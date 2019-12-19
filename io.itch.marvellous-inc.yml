@@ -1,0 +1,28 @@
+app-id: io.itch.marvellous-inc
+base: org.love2d.BaseApp
+base-version: '11.3'
+runtime: org.freedesktop.Platform
+runtime-version: '19.08'
+sdk: org.freedesktop.Sdk
+command: marvellous-inc
+finish-args:
+        - --socket=x11
+        - --socket=wayland
+        - --socket=pulseaudio
+        - --device=dri
+modules:
+        - name: marvinc
+          buildsystem: simple
+          build-commands:
+                  - cd marv && zip -r /app/bin/marvellous-inc.love *
+                  - cp marvellous-inc /app/bin/marvellous-inc
+          sources:
+                  - type: git
+                    url: https://github.com/MarvellousSoft/MarvInc
+                    tag: 1.3.3-2
+                    commit: 65ea335d001637b330b490b6ac2ea195eec983b9
+                  - type: script
+                    dest-filename: marvellous-inc
+                    commands:
+                            - /app/bin/love /app/bin/marvellous-inc.love
+

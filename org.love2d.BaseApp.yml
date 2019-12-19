@@ -1,0 +1,56 @@
+app-id: org.love2d.BaseApp
+branch: '11.3'
+runtime: org.freedesktop.Platform
+runtime-version: '19.08'
+separate-locales: false
+sdk: org.freedesktop.Sdk
+cleanup:
+        - '/include'
+        - '/lib/debug'
+        - '/lib/lua'
+        - '/lib/pkgconfig'
+        - '/share/lua'
+        - '/share/man'
+        - '*.la'
+        - '*.a'
+modules:
+        - name: libmodplug
+          buildsystem: simple
+          build-commands:
+                  - autoreconf --install
+                  - ./configure --prefix=/app
+                  - make
+                  - make install
+          sources:
+                  - type: git
+                    url: https://github.com/Konstanty/libmodplug
+                    commit: 5a39f5913d07ba3e61d8d5afdba00b70165da81d
+        - name: physicsfs
+          buildsystem: cmake
+          sources:
+                  - type: archive
+                    url: https://icculus.org/physfs/downloads/physfs-3.0.2.tar.bz2
+                    sha256: 304df76206d633df5360e738b138c94e82ccf086e50ba84f456d3f8432f9f863
+        - name: luajit
+          buildsystem: simple
+          build-commands:
+                  - sed -i "s@/usr/local@/app@g" Makefile
+                  - make
+                  - make install
+          sources:
+                  - type: git
+                    url: https://github.com/LuaJIT/LuaJIT
+                    tag: v2.0.5
+                    commit: 0bf80b07b0672ce874feedcc777afe1b791ccb5a
+        - name: love
+          buildsystem: simple
+          build-commands:
+                  - platform/unix/automagic
+                  - ./configure --prefix=/app
+                  - make
+                  - make install
+          sources:
+                  - type: git
+                    url: https://github.com/love2d/love
+                    tag: 11.3
+                    commit: 6fa5edf5b1ed209d38ae3be0eff350570b90c164
