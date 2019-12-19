@@ -1,5 +1,5 @@
 app-id: org.love2d.BaseApp
-branch: '11.3'
+branch: '0.10.2'
 runtime: org.freedesktop.Platform
 runtime-version: '19.08'
 separate-locales: false
@@ -52,5 +52,5 @@ modules:
           sources:
                   - type: git
                     url: https://github.com/love2d/love
-                    tag: 11.3
-                    commit: 6fa5edf5b1ed209d38ae3be0eff350570b90c164
+                    tag: 0.10.2
+                    commit: 9e139779956ddba89333eece8104bd7b1b4ff2e7

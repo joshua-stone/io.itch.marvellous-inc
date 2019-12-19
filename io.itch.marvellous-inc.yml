@@ -1,6 +1,6 @@
 app-id: io.itch.marvellous-inc
 base: org.love2d.BaseApp
-base-version: '11.3'
+base-version: '0.10.2'
 runtime: org.freedesktop.Platform
 runtime-version: '19.08'
 sdk: org.freedesktop.Sdk
